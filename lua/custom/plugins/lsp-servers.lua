@@ -37,6 +37,8 @@ return {
       tailwindcss = {},
       emmet_ls = {},
       eslint = {},
+      cssls = {},
+      vue_ls = {},
     },
     install = {
       -- LSP servers
@@ -46,6 +48,9 @@ return {
       'vue-language-server',
       'emmet-language-server',
       'eslint-lsp',
+      'prettier',
+      'prettierd',
+      'css-lsp',
     },
   },
 }

@@ -58,3 +58,9 @@ local function laravel_goto_view()
 end
 
 vim.keymap.set('n', 'grv', laravel_goto_view, { desc = 'Laravel: Go to view()' })
+
+-- Blade comment style for Comment.nvim (gc/gcc)
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'blade',
+  callback = function() vim.bo.commentstring = '{{-- %s --}}' end,
+})

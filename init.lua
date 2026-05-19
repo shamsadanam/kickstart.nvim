@@ -688,6 +688,13 @@ require('lazy').setup({
       formatters_by_ft = {
         php = { 'pint' },
         blade = { 'pint' },
+        vue = { 'prettierd', 'prettier', stop_after_first = true },
+        scss = { 'prettierd', 'prettier', stop_after_first = true },
+        css = { 'prettier' },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescriptreact = { 'prettier' },
 
         -- rust = { 'rustfmt' },
         -- Conform can also run multiple formatters sequentially
@@ -899,6 +906,12 @@ require('lazy').setup({
         'c',
         'diff',
         'html',
+        'css',
+        'scss',
+        'javascript',
+        'typescript',
+        'tsx',
+        'vue',
         'lua',
         'luadoc',
         'markdown',
