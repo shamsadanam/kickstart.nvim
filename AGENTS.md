@@ -12,7 +12,8 @@ nvim
 
 - **`init.lua`** — main entry point. Inline plugin specs for most plugins.
 - **`lua/custom/init.lua`** — loaded early by `require("custom.init")` (called before lazy setup). Adds treesitter-based folding (`foldmethod=expr`) and forces `clipboard=unnamedplus`.
-- **`lua/custom/plugins/`** — auto-imported by `{ import = 'custom.plugins' }` in init.lua. Currently contains `neo-tree.lua` and an empty `init.lua`. Add new plugin specs here.
+- **`lua/custom/plugins/`** — auto-imported by `{ import = 'custom.plugins' }` in init.lua. Add new plugin specs here.
+  - Current custom specs: `neo-tree.lua`, `bufferline.lua`, `trouble.lua`, `lsp-servers.lua`, and `init.lua` (may be empty).
 - **`lua/kickstart/plugins/`** — optional plugins require'd individually in init.lua (debug, indent_line, lint, autopairs). Not auto-loaded.
 
 ## Plugin manager
@@ -20,6 +21,20 @@ nvim
 - `lazy.nvim` at `~/.local/share/nvim/lazy/lazy.nvim`
 - `:Lazy` — status, `:Lazy update` — update all
 - `:Mason` — install/manage LSP servers, linters, formatters
+
+## Adding Custom Plugins (Follow Existing Structure)
+
+- Add a new file under `lua/custom/plugins/<name>.lua` that returns a `LazySpec` table.
+- Keep custom plugin configuration in these files to avoid merge conflicts with upstream kickstart changes.
+- Prefer `opts = { ... }` for simple config; use `config = function(_, opts) ... end` only when you need imperative setup or extra keymaps.
+
+## Adding Custom LSP Servers (Follow Existing Structure)
+
+- LSP is configured by the `neovim/nvim-lspconfig` plugin spec in `init.lua`.
+- Custom LSP server additions/overrides live in `lua/custom/plugins/lsp-servers.lua` as an `opts = { servers = { ... }, install = { ... } }` override.
+  - `opts.servers`: maps LSP server name to its config table.
+  - `opts.install`: extra Mason package names to install (in addition to all server keys).
+- This config uses Neovim 0.11-style `vim.lsp.config(name, server)` and `vim.lsp.enable(name)` (not `lspconfig[name].setup()`).
 
 ## Formatting
 
@@ -65,6 +80,9 @@ nvim
 | `init.lua` | Entry point, most plugin config |
 | `lua/custom/init.lua` | Folding + clipboard overrides |
 | `lua/custom/plugins/neo-tree.lua` | NeoTree file explorer |
+| `lua/custom/plugins/lsp-servers.lua` | Custom LSP server list + Mason install list |
+| `lua/custom/plugins/bufferline.lua` | Bufferline + tab/buffer keymaps |
+| `lua/custom/plugins/trouble.lua` | Trouble diagnostics/symbols lists |
 | `lua/kickstart/plugins/gitsigns.lua` | Gitsigns hunk keymaps |
 | `lua/kickstart/plugins/debug.lua` | DAP debugger (Go) |
 | `lua/kickstart/health.lua` | `:checkhealth` for kickstart |

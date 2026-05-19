@@ -20,11 +20,28 @@ return {
           },
         },
       },
+
+      -- PHP
+      intelephense = {
+        settings = {
+          intelephense = {
+            files = { maxSize = 5000000 },
+            diagnostics = { enable = true },
+          },
+        },
+      },
+
+      -- SQL
+      sqlls = {},
+
       tailwindcss = {},
       emmet_ls = {},
       eslint = {},
     },
     install = {
+      -- LSP servers
+      'intelephense',
+      'sqlls',
       'tailwindcss-language-server',
       'vue-language-server',
       'emmet-language-server',
