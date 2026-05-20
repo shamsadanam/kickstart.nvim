@@ -705,7 +705,11 @@ require('lazy').setup({
       },
       formatters = {
         pint = {
-          command = 'pint',
+          command = function()
+            local local_pint = vim.fn.getcwd() .. '/vendor/bin/pint'
+            if vim.fn.executable(local_pint) == 1 then return local_pint end
+            return 'pint'
+          end,
           stdin = false,
           args = { '$FILENAME' },
         },

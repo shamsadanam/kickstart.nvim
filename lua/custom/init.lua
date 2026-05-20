@@ -13,15 +13,13 @@ vim.opt.clipboard = 'unnamedplus'
 
 -- My Keymaps
 -- In Normal Mode: Backspace deletes 1 character to the left (like _X)
-vim.keymap.set('n', '<BS>', '"_X', { desc = "Backspace character left without yanking" })
+vim.keymap.set('n', '<BS>', '"_X', { desc = 'Backspace character left without yanking' })
 
 -- In Visual Mode: Backspace deletes whatever text you selected (like _d)
-vim.keymap.set('x', '<BS>', '"_d', { desc = "Delete selection without yanking" })
+vim.keymap.set('x', '<BS>', '"_d', { desc = 'Delete selection without yanking' })
 
 -- In Normal Mode: Double-tap Backspace to delete the whole line (like _dd)
 -- vim.keymap.set('n', '<BS><BS>', '"_dd', { desc = "Double backspace deletes whole line without yanking" })
-
-
 
 -- Laravel Blade templates
 vim.filetype.add {
@@ -58,6 +56,16 @@ local function laravel_goto_view()
 end
 
 vim.keymap.set('n', 'grv', laravel_goto_view, { desc = 'Laravel: Go to view()' })
+
+-- Use Blade-aware navigation for Livewire/component tags in Blade files.
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'blade',
+  callback = function(ev)
+    local opts = { buffer = ev.buf, silent = true }
+    vim.keymap.set('n', 'grd', 'gf', vim.tbl_extend('force', opts, { desc = 'Blade: Go to definition target' }))
+    vim.keymap.set('n', 'gri', 'gf', vim.tbl_extend('force', opts, { desc = 'Blade: Go to implementation target' }))
+  end,
+})
 
 -- Blade comment style for Comment.nvim (gc/gcc)
 vim.api.nvim_create_autocmd('FileType', {

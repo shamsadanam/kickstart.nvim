@@ -23,6 +23,7 @@ return {
 
       -- PHP
       intelephense = {
+        filetypes = { 'php', 'blade' },
         settings = {
           intelephense = {
             files = { maxSize = 5000000 },
@@ -51,6 +52,7 @@ return {
       'prettier',
       'prettierd',
       'css-lsp',
+      'pint',
     },
   },
 }
