@@ -38,7 +38,13 @@ return {
       tailwindcss = {},
       emmet_ls = {},
       eslint = {},
-      cssls = {},
+      cssls = {
+        settings = {
+          css = { lint = { unknownAtRules = 'ignore' } },
+          scss = { lint = { unknownAtRules = 'ignore' } },
+          less = { lint = { unknownAtRules = 'ignore' } },
+        },
+      },
       vue_ls = {},
     },
     install = {
