@@ -55,10 +55,13 @@ return {
       'vue-language-server',
       'emmet-language-server',
       'eslint-lsp',
+      -- Formatters
       'prettier',
       'prettierd',
       'css-lsp',
       'pint',
+      'stylua',
+      'blade-formatter',
     },
   },
 }
