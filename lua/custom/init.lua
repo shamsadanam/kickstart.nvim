@@ -2,11 +2,11 @@
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
 
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.opt.foldenable = true
-vim.opt.foldlevel = 99 -- Start with all folds open
-vim.opt.foldlevelstart = 99
+-- vim.opt.foldmethod = 'expr'
+-- vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+-- vim.opt.foldenable = true
+-- vim.opt.foldlevel = 99 -- Start with all folds open
+-- vim.opt.foldlevelstart = 99
 
 -- enable clipboard
 vim.opt.clipboard = 'unnamedplus'
